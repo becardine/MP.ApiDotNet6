@@ -13,12 +13,12 @@ namespace MP.ApiDotNet6.Infra.Data.Maps
     {
         public void Configure(EntityTypeBuilder<Person> builder)
         {
-            builder.ToTable("Pessoa");
+            builder.ToTable("pessoa");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).HasColumnName("Id_pessoa").UseIdentityColumn();
-            builder.Property(x => x.Document).HasColumnName("Documento");
-            builder.Property(x => x.Name).HasColumnName("Nome");
-            builder.Property(x => x.Phone).HasColumnName("Celular");
+            builder.Property(x => x.Id).HasColumnName("id_pessoa").UseIdentityColumn();
+            builder.Property(x => x.Document).HasColumnName("documento");
+            builder.Property(x => x.Name).HasColumnName("nome");
+            builder.Property(x => x.Phone).HasColumnName("celular");
 
             builder.HasMany(x => x.Purchases).WithOne(i => i.Person).HasForeignKey(x => x.PersonId);
         }
