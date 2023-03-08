@@ -1,3 +1,5 @@
+using MP.ApiDotNet6.Infra.IoC;
+
 namespace MP.ApiDotNet6.Api
 {
     public class Program
@@ -12,6 +14,8 @@ namespace MP.ApiDotNet6.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddInfrastructure(builder.Configuration);
+            builder.Services.AddServices(builder.Configuration);
 
             var app = builder.Build();
 
