@@ -14,5 +14,6 @@ namespace MP.ApiDotNet6.Domain.Repositories
         Task<Product> CreateAsync(Product product);
         Task UpdateAsync(Product product);
         Task DeleteAsync(Product product);
+        Task<int> GetIdByCodeErpAsync(string codeErp);
     }
 }
