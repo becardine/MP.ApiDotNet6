@@ -31,10 +31,17 @@ namespace MP.ApiDotNet6.Domain.Entities
             Validation(productId, personId);
         }
 
+        public void Update(int id, int productId, int personId)
+        {
+            DomainValidationException.When(id < 0, "Necessário informar o ID da compra");
+            Id = id;
+            Validation(productId, personId);
+        }
+
         private void Validation(int productId, int personId)
         {
-            DomainValidationException.When(productId < 0, "Necessário informar o ID do produto");
-            DomainValidationException.When(personId < 0, "Necessário informar o ID do cliente");
+            DomainValidationException.When(productId <= 0, "Necessário informar o ID do produto");
+            DomainValidationException.When(personId <= 0, "Necessário informar o ID do cliente");
 
             ProductId = productId; 
             PersonId = personId;
