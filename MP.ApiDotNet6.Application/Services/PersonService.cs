@@ -3,6 +3,7 @@ using MP.ApiDotNet6.Application.DTOs;
 using MP.ApiDotNet6.Application.DTOs.Validations;
 using MP.ApiDotNet6.Application.Services.Interfaces;
 using MP.ApiDotNet6.Domain.Entities;
+using MP.ApiDotNet6.Domain.FiltersDb;
 using MP.ApiDotNet6.Domain.Repositories;
 using System;
 using System.Collections.Generic;
@@ -78,8 +79,15 @@ namespace MP.ApiDotNet6.Application.Services
 
             await _personRepository.DeleteAsync(person);
             return ResultService.Ok("Usuário deletado com sucesso");
-
-
         }
+
+        public async Task<ResultService<PagedBaseResponseDTO<PersonDTO>>> GetPagedAsync(PersonFilterDb personFilterDb)
+        {
+            var peoplePaged = await _personRepository.GetPagedAsync(personFilterDb);
+            var result = new PagedBaseResponseDTO<PersonDTO>(peoplePaged.TotalRegisters, 
+                                                                _mapper.Map<List<PersonDTO>>(peoplePaged.Data));
+
+            return ResultService.Ok(result);
+                    }
     }
 }
